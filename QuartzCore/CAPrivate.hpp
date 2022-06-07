@@ -68,7 +68,7 @@ namespace Private
 {
     namespace Class
     {
-
+        _CA_PRIVATE_DEF_CLS(CAMetalLayer)
     } // Class
 } // Private
 } // CA
@@ -101,6 +101,10 @@ namespace Private
             "layer");
         _CA_PRIVATE_DEF_SEL(texture,
             "texture");
+        _CA_PRIVATE_DEF_SEL(device,
+            "device");
+        _CA_PRIVATE_DEF_SEL(nextDrawable,
+            "nextDrawable");
 
     } // Class
 } // Private

@@ -5615,7 +5615,7 @@ namespace Private
 {
     namespace Class
     {
-
+        _CA_PRIVATE_DEF_CLS(CAMetalLayer)
     } // Class
 } // Private
 } // CA
@@ -5644,7 +5644,11 @@ namespace Private
             "layer");
         _CA_PRIVATE_DEF_SEL(texture,
             "texture");
-
+        _CA_PRIVATE_DEF_SEL(device,
+            "device");
+        _CA_PRIVATE_DEF_SEL(nextDrawable,
+            "nextDrawable");
+    
     } // Class
 } // Private
 } // CA
@@ -5667,6 +5671,24 @@ _CA_INLINE CA::MetalLayer* CA::MetalDrawable::layer() const
 _CA_INLINE MTL::Texture* CA::MetalDrawable::texture() const
 {
     return Object::sendMessage<MTL::Texture*>(this, _MTL_PRIVATE_SEL(texture));
+}
+
+namespace CA {
+class MetalLayer: public NS::Referencing<MetalLayer> {
+public:
+    class MTL::Device* device() const;
+    class CA::MetalDrawable* nextDrawable() const;
+};
+}
+
+_CA_INLINE MTL::Device* CA::MetalLayer::device() const
+{
+    return Object::sendMessage<MTL::Device*>(this, _MTL_PRIVATE_SEL(device));
+}
+
+_CA_INLINE CA::MetalDrawable* CA::MetalLayer::nextDrawable() const
+{
+    return Object::sendMessage<CA::MetalDrawable*>(this, _MTL_PRIVATE_SEL(nextDrawable));
 }
 
 #pragma once
