@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 //
-// Foundation/Foundation.hpp
+// Metal/MTLVersion.hpp
 //
 // Copyright 2020-2022 Apple Inc.
 //
@@ -22,26 +22,11 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#include "NSArray.hpp"
-#include "NSAutoreleasePool.hpp"
-#include "NSBundle.hpp"
-#include "NSData.hpp"
-#include "NSDate.hpp"
-#include "NSDefines.hpp"
-#include "NSDictionary.hpp"
-#include "NSEnumerator.hpp"
-#include "NSError.hpp"
-#include "NSLock.hpp"
-#include "NSNotification.hpp"
-#include "NSNumber.hpp"
-#include "NSObject.hpp"
-#include "NSPrivate.hpp"
-#include "NSProcessInfo.hpp"
-#include "NSRange.hpp"
-#include "NSSet.hpp"
-#include "NSSharedPtr.hpp"
-#include "NSString.hpp"
-#include "NSTypes.hpp"
-#include "NSURL.hpp"
+#define METALCPP_VERSION_MAJOR 306
+#define METALCPP_VERSION_MINOR 2
+#define METALCPP_VERSION_PATCH 4
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+#define METALCPP_SUPPORTS_VERSION(major, minor, patch) \
+    ((major < METALCPP_VERSION_MAJOR) || \
+    (major == METALCPP_VERSION_MAJOR && minor < METALCPP_VERSION_MINOR) || \
+    (major == METALCPP_VERSION_MAJOR && minor == METALCPP_VERSION_MINOR && patch <= METALCPP_VERSION_PATCH))
