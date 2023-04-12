@@ -2,7 +2,7 @@
 //
 // Metal/MTLHeaderBridge.hpp
 //
-// Copyright 2020-2022 Apple Inc.
+// Copyright 2020-2023 Apple Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -226,6 +226,8 @@ _MTL_PRIVATE_DEF_SEL(allowDuplicateIntersectionFunctionInvocation,
     "allowDuplicateIntersectionFunctionInvocation");
 _MTL_PRIVATE_DEF_SEL(allowGPUOptimizedContents,
     "allowGPUOptimizedContents");
+_MTL_PRIVATE_DEF_SEL(allowReferencingUndefinedSymbols,
+    "allowReferencingUndefinedSymbols");
 _MTL_PRIVATE_DEF_SEL(alphaBlendOperation,
     "alphaBlendOperation");
 _MTL_PRIVATE_DEF_SEL(areBarycentricCoordsSupported,
@@ -330,6 +332,8 @@ _MTL_PRIVATE_DEF_SEL(commit,
     "commit");
 _MTL_PRIVATE_DEF_SEL(compareFunction,
     "compareFunction");
+_MTL_PRIVATE_DEF_SEL(compileSymbolVisibility,
+    "compileSymbolVisibility");
 _MTL_PRIVATE_DEF_SEL(compressionType,
     "compressionType");
 _MTL_PRIVATE_DEF_SEL(computeCommandEncoder,
@@ -826,6 +830,8 @@ _MTL_PRIVATE_DEF_SEL(maxVertexBufferBindCount,
     "maxVertexBufferBindCount");
 _MTL_PRIVATE_DEF_SEL(maxVertexCallStackDepth,
     "maxVertexCallStackDepth");
+_MTL_PRIVATE_DEF_SEL(maximumConcurrentCompilationTaskCount,
+    "maximumConcurrentCompilationTaskCount");
 _MTL_PRIVATE_DEF_SEL(memberByName_,
     "memberByName:");
 _MTL_PRIVATE_DEF_SEL(members,
@@ -1266,6 +1272,8 @@ _MTL_PRIVATE_DEF_SEL(setAllowDuplicateIntersectionFunctionInvocation_,
     "setAllowDuplicateIntersectionFunctionInvocation:");
 _MTL_PRIVATE_DEF_SEL(setAllowGPUOptimizedContents_,
     "setAllowGPUOptimizedContents:");
+_MTL_PRIVATE_DEF_SEL(setAllowReferencingUndefinedSymbols_,
+    "setAllowReferencingUndefinedSymbols:");
 _MTL_PRIVATE_DEF_SEL(setAlphaBlendOperation_,
     "setAlphaBlendOperation:");
 _MTL_PRIVATE_DEF_SEL(setAlphaToCoverageEnabled_,
@@ -1336,6 +1344,8 @@ _MTL_PRIVATE_DEF_SEL(setCommandTypes_,
     "setCommandTypes:");
 _MTL_PRIVATE_DEF_SEL(setCompareFunction_,
     "setCompareFunction:");
+_MTL_PRIVATE_DEF_SEL(setCompileSymbolVisibility_,
+    "setCompileSymbolVisibility:");
 _MTL_PRIVATE_DEF_SEL(setCompressionType_,
     "setCompressionType:");
 _MTL_PRIVATE_DEF_SEL(setComputeFunction_,
@@ -1768,6 +1778,8 @@ _MTL_PRIVATE_DEF_SEL(setScratchBufferAllocator_,
     "setScratchBufferAllocator:");
 _MTL_PRIVATE_DEF_SEL(setScreenSize_,
     "setScreenSize:");
+_MTL_PRIVATE_DEF_SEL(setShouldMaximizeConcurrentCompilation_,
+    "setShouldMaximizeConcurrentCompilation:");
 _MTL_PRIVATE_DEF_SEL(setSignaledValue_,
     "setSignaledValue:");
 _MTL_PRIVATE_DEF_SEL(setSize_,
@@ -2000,6 +2012,8 @@ _MTL_PRIVATE_DEF_SEL(setWriteMask_,
     "setWriteMask:");
 _MTL_PRIVATE_DEF_SEL(sharedCaptureManager,
     "sharedCaptureManager");
+_MTL_PRIVATE_DEF_SEL(shouldMaximizeConcurrentCompilation,
+    "shouldMaximizeConcurrentCompilation");
 _MTL_PRIVATE_DEF_SEL(signalEvent_value_,
     "signalEvent:value:");
 _MTL_PRIVATE_DEF_SEL(signaledValue,

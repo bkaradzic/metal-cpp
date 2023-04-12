@@ -305,5 +305,6 @@ CA::MetalDrawable* pMetalDrawable = pMetalLayer->nextDrawable();
 
 | Version | Changes |
 |-|-|
+| macOS 13.3, iOS 16.4 | Add all APIs in macOS 13.3 and iOS 16.4. |
 | macOS 13, iOS 16| Add all APIs for macOS 13 and iOS 16.<br />New optional `NS::SharedPtr<T>` type to assist with memory management.<br/>New convenience function to create a `CA::MetalLayer`.<br/>New `MTLSTR(str)` macro allows faster string creation from literals.<br/>Fix a problem with the signature of functions that take an array of pointers as input.<br/>Fix a problem with the signature of the `setGroups()` function in `MTL::LinkedFunctions`.|
 | macOS 12, iOS 15 | Initial release. |

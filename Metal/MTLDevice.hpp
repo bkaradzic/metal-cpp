@@ -2,7 +2,7 @@
 //
 // Metal/MTLDevice.hpp
 //
-// Copyright 2020-2022 Apple Inc.
+// Copyright 2020-2023 Apple Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -477,6 +477,11 @@ public:
     bool                            supportsRaytracingFromRender() const;
 
     bool                            supportsPrimitiveMotionBlur() const;
+
+    bool                            shouldMaximizeConcurrentCompilation() const;
+    void                            setShouldMaximizeConcurrentCompilation(bool shouldMaximizeConcurrentCompilation);
+
+    NS::UInteger                    maximumConcurrentCompilationTaskCount() const;
 };
 
 }
@@ -1349,4 +1354,21 @@ _MTL_INLINE bool MTL::Device::supportsRaytracingFromRender() const
 _MTL_INLINE bool MTL::Device::supportsPrimitiveMotionBlur() const
 {
     return Object::sendMessageSafe<bool>(this, _MTL_PRIVATE_SEL(supportsPrimitiveMotionBlur));
+}
+
+// property: shouldMaximizeConcurrentCompilation
+_MTL_INLINE bool MTL::Device::shouldMaximizeConcurrentCompilation() const
+{
+    return Object::sendMessage<bool>(this, _MTL_PRIVATE_SEL(shouldMaximizeConcurrentCompilation));
+}
+
+_MTL_INLINE void MTL::Device::setShouldMaximizeConcurrentCompilation(bool shouldMaximizeConcurrentCompilation)
+{
+    Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(setShouldMaximizeConcurrentCompilation_), shouldMaximizeConcurrentCompilation);
+}
+
+// property: maximumConcurrentCompilationTaskCount
+_MTL_INLINE NS::UInteger MTL::Device::maximumConcurrentCompilationTaskCount() const
+{
+    return Object::sendMessage<NS::UInteger>(this, _MTL_PRIVATE_SEL(maximumConcurrentCompilationTaskCount));
 }
