@@ -83,6 +83,8 @@ _MTL_ENUM(NS::UInteger, AttributeFormat) {
     AttributeFormatUShortNormalized = 51,
     AttributeFormatShortNormalized = 52,
     AttributeFormatHalf = 53,
+    AttributeFormatFloatRG11B10 = 54,
+    AttributeFormatFloatRGB9E5 = 55,
 };
 
 _MTL_ENUM(NS::UInteger, IndexType) {

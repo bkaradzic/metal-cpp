@@ -28,6 +28,9 @@
 
 namespace MTL
 {
+
+static const NS::UInteger AttributeStrideStatic = NS::UIntegerMax;
+
 class ArgumentEncoder : public NS::Referencing<ArgumentEncoder>
 {
 public:

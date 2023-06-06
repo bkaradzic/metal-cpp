@@ -32,6 +32,7 @@ namespace MTL
 {
 class FunctionStitchingAttribute : public NS::Referencing<FunctionStitchingAttribute>
 {
+public:
 };
 
 class FunctionStitchingAttributeAlwaysInline : public NS::Referencing<FunctionStitchingAttributeAlwaysInline, FunctionStitchingAttribute>
@@ -44,6 +45,7 @@ public:
 
 class FunctionStitchingNode : public NS::Copying<FunctionStitchingNode>
 {
+public:
 };
 
 class FunctionStitchingInputNode : public NS::Referencing<FunctionStitchingInputNode, FunctionStitchingNode>

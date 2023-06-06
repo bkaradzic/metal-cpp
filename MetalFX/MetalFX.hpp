@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 //
-// Metal/MTLVersion.hpp
+// MetalFX/MetalFX.hpp
 //
 // Copyright 2020-2023 Apple Inc.
 //
@@ -22,11 +22,7 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#define METALCPP_VERSION_MAJOR 341
-#define METALCPP_VERSION_MINOR 0
-#define METALCPP_VERSION_PATCH 0
+#include "MTLFXSpatialScaler.hpp"
+#include "MTLFXTemporalScaler.hpp"
 
-#define METALCPP_SUPPORTS_VERSION(major, minor, patch) \
-    ((major < METALCPP_VERSION_MAJOR) || \
-    (major == METALCPP_VERSION_MAJOR && minor < METALCPP_VERSION_MINOR) || \
-    (major == METALCPP_VERSION_MAJOR && minor == METALCPP_VERSION_MINOR && patch <= METALCPP_VERSION_PATCH))
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------

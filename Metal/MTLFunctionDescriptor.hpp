@@ -33,6 +33,7 @@ namespace MTL
 _MTL_OPTIONS(NS::UInteger, FunctionOptions) {
     FunctionOptionNone = 0,
     FunctionOptionCompileToBinary = 1,
+    FunctionOptionStoreFunctionInMetalScript = 2,
 };
 
 class FunctionDescriptor : public NS::Copying<FunctionDescriptor>
