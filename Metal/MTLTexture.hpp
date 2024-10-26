@@ -2,7 +2,7 @@
 //
 // Metal/MTLTexture.hpp
 //
-// Copyright 2020-2023 Apple Inc.
+// Copyright 2020-2024 Apple Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,6 +58,12 @@ _MTL_ENUM(uint8_t, TextureSwizzle) {
 
 struct TextureSwizzleChannels
 {
+    static TextureSwizzleChannels   Default();
+    static TextureSwizzleChannels   Make( TextureSwizzle r, TextureSwizzle g, TextureSwizzle b, TextureSwizzle a );
+
+    constexpr TextureSwizzleChannels();
+    constexpr TextureSwizzleChannels( TextureSwizzle r, TextureSwizzle g, TextureSwizzle b, TextureSwizzle a );
+
     MTL::TextureSwizzle red;
     MTL::TextureSwizzle green;
     MTL::TextureSwizzle blue;
@@ -207,11 +213,11 @@ public:
 
     MTL::ResourceID             gpuResourceID() const;
 
-    void                        getBytes(const void* pixelBytes, NS::UInteger bytesPerRow, NS::UInteger bytesPerImage, MTL::Region region, NS::UInteger level, NS::UInteger slice);
+    void                        getBytes(void* pixelBytes, NS::UInteger bytesPerRow, NS::UInteger bytesPerImage, MTL::Region region, NS::UInteger level, NS::UInteger slice);
 
     void                        replaceRegion(MTL::Region region, NS::UInteger level, NS::UInteger slice, const void* pixelBytes, NS::UInteger bytesPerRow, NS::UInteger bytesPerImage);
 
-    void                        getBytes(const void* pixelBytes, NS::UInteger bytesPerRow, MTL::Region region, NS::UInteger level);
+    void                        getBytes(void* pixelBytes, NS::UInteger bytesPerRow, MTL::Region region, NS::UInteger level);
 
     void                        replaceRegion(MTL::Region region, NS::UInteger level, const void* pixelBytes, NS::UInteger bytesPerRow);
 
@@ -229,6 +235,34 @@ public:
 
     class Texture*              newTextureView(MTL::PixelFormat pixelFormat, MTL::TextureType textureType, NS::Range levelRange, NS::Range sliceRange, MTL::TextureSwizzleChannels swizzle);
 };
+
+}
+
+_MTL_INLINE MTL::TextureSwizzleChannels MTL::TextureSwizzleChannels::Default()
+{
+    return MTL::TextureSwizzleChannels();
+}
+
+_MTL_INLINE constexpr MTL::TextureSwizzleChannels::TextureSwizzleChannels()
+: red(MTL::TextureSwizzleRed)
+, green(MTL::TextureSwizzleGreen)
+, blue(MTL::TextureSwizzleBlue)
+, alpha(MTL::TextureSwizzleAlpha)
+{
+
+}
+
+_MTL_INLINE MTL::TextureSwizzleChannels MTL::TextureSwizzleChannels::Make( TextureSwizzle r, TextureSwizzle g, TextureSwizzle b, TextureSwizzle a )
+{
+    return TextureSwizzleChannels(r, g, b, a);
+}
+
+_MTL_INLINE constexpr MTL::TextureSwizzleChannels::TextureSwizzleChannels( TextureSwizzle r, TextureSwizzle g, TextureSwizzle b, TextureSwizzle a )
+: red(r)
+, green(g)
+, blue(b)
+, alpha(a)
+{
 
 }
 
@@ -619,7 +653,7 @@ _MTL_INLINE MTL::ResourceID MTL::Texture::gpuResourceID() const
 }
 
 // method: getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:
-_MTL_INLINE void MTL::Texture::getBytes(const void* pixelBytes, NS::UInteger bytesPerRow, NS::UInteger bytesPerImage, MTL::Region region, NS::UInteger level, NS::UInteger slice)
+_MTL_INLINE void MTL::Texture::getBytes(void* pixelBytes, NS::UInteger bytesPerRow, NS::UInteger bytesPerImage, MTL::Region region, NS::UInteger level, NS::UInteger slice)
 {
     Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice_), pixelBytes, bytesPerRow, bytesPerImage, region, level, slice);
 }
@@ -631,7 +665,7 @@ _MTL_INLINE void MTL::Texture::replaceRegion(MTL::Region region, NS::UInteger le
 }
 
 // method: getBytes:bytesPerRow:fromRegion:mipmapLevel:
-_MTL_INLINE void MTL::Texture::getBytes(const void* pixelBytes, NS::UInteger bytesPerRow, MTL::Region region, NS::UInteger level)
+_MTL_INLINE void MTL::Texture::getBytes(void* pixelBytes, NS::UInteger bytesPerRow, MTL::Region region, NS::UInteger level)
 {
     Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(getBytes_bytesPerRow_fromRegion_mipmapLevel_), pixelBytes, bytesPerRow, region, level);
 }
