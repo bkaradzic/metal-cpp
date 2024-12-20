@@ -33,6 +33,9 @@
 
 namespace MTL
 {
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnested-anon-types"
 struct PackedFloat3
 {
     PackedFloat3();
@@ -53,6 +56,7 @@ struct PackedFloat3
         float elements[3];
     };
 } _MTL_PACKED;
+#pragma clang diagnostic pop
 
 struct PackedFloat4x3
 {
@@ -75,6 +79,8 @@ struct AxisAlignedBoundingBox
     PackedFloat3 max;
 } _MTL_PACKED;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnested-anon-types"
 struct PackedFloatQuaternion
 {
     PackedFloatQuaternion();
@@ -97,6 +103,7 @@ struct PackedFloatQuaternion
     };
     
 } _MTL_PACKED;
+#pragma clang diagnostic pop
 
 struct ComponentTransform
 {

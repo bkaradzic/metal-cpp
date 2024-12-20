@@ -20,6 +20,7 @@
 
 #pragma once
 
+#include <cstddef>
 #include "NSDefines.hpp"
 
 namespace NS
@@ -37,6 +38,11 @@ public:
      * Destroy this SharedPtr, decreasing the reference count.
      */
     ~SharedPtr();
+
+    /**
+     * Create a new null pointer.
+     */
+    SharedPtr(std::nullptr_t) noexcept;
 
     /**
      * SharedPtr copy constructor.
@@ -159,9 +165,15 @@ _NS_INLINE NS::SharedPtr<_Class>::SharedPtr()
 }
 
 template <class _Class>
-_NS_INLINE NS::SharedPtr<_Class>::~SharedPtr() __attribute__((no_sanitize("undefined")))
+_NS_INLINE NS::SharedPtr<_Class>::~SharedPtr<_Class>() __attribute__((no_sanitize("undefined")))
 {
     m_pObject->release();
+}
+
+template <class _Class>
+_NS_INLINE NS::SharedPtr<_Class>::SharedPtr(std::nullptr_t) noexcept
+    : m_pObject(nullptr)
+{
 }
 
 template <class _Class>

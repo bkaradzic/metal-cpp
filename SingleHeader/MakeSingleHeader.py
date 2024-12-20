@@ -132,7 +132,7 @@ class SingleHeader( object ):
 		return f.read()
 
 	def __strip_pragma_once( self, header ):
-		return re.sub( '\\s*#pragma once\s*\\/\\/-*\\n', '', header )
+		return re.sub( '\\s*#pragma once\\s*\\/\\/-*\\n', '', header )
 
 	def __strip_comments( self, header ):
 		return re.sub( '^//.*\\n', '', header, flags = re.MULTILINE )
