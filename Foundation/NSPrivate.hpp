@@ -66,7 +66,12 @@ namespace NS::Private
 #define _NS_PRIVATE_DEF_PRO(symbol) void* s_k##symbol _NS_PRIVATE_VISIBILITY = _NS_PRIVATE_OBJC_GET_PROTOCOL(symbol)
 #define _NS_PRIVATE_DEF_SEL(accessor, symbol) SEL s_k##accessor _NS_PRIVATE_VISIBILITY = sel_registerName(symbol)
 
-#if defined(__MAC_26_0) || defined(__IPHONE_26_0) || defined(__TVOS_26_0)
+#if defined(__OBJC__)
+// In Obj-C++ mode, avoid declaring NS##symbol/MTL##symbol externs that conflict
+// with Foundation/Metal framework Obj-C declarations of the same symbols.
+#define _NS_PRIVATE_DEF_CONST(type, symbol) \
+    type const             NS::symbol = Private::LoadSymbol<type>("NS" #symbol)
+#elif defined(__MAC_26_0) || defined(__IPHONE_26_0) || defined(__TVOS_26_0)
 #define _NS_PRIVATE_DEF_CONST(type, symbol)              \
     _NS_EXTERN type const NS##symbol _NS_PRIVATE_IMPORT; \
     type const                       NS::symbol = (nullptr != &NS##symbol) ? NS##symbol : type()

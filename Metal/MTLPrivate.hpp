@@ -71,7 +71,18 @@ namespace MTL::Private
     }
 } // MTL::Private
 
-#if (TARGET_OS_OSX    && __MAC_26_0   && (__MAC_OS_X_VERSION_MIN_REQUIRED  >= __MAC_26_0))                           || \
+#if defined(__OBJC__)
+// In Obj-C++ mode, avoid declaring MTL##symbol externs that conflict
+// with Metal framework Obj-C declarations of the same symbols.
+#define _MTL_PRIVATE_DEF_STR(type, symbol) \
+    type const             MTL::symbol = MTL::Private::LoadSymbol<type>("MTL" #symbol)
+
+#define _MTL_PRIVATE_DEF_CONST(type, symbol) \
+    type const             MTL::symbol = MTL::Private::LoadSymbol<type>("MTL" #symbol)
+
+#define _MTL_PRIVATE_DEF_WEAK_CONST(type, symbol) _MTL_PRIVATE_DEF_CONST(type, symbol)
+
+#elif (TARGET_OS_OSX    && __MAC_26_0   && (__MAC_OS_X_VERSION_MIN_REQUIRED  >= __MAC_26_0))                           || \
     (TARGET_OS_IPHONE && _IPHONE_26_0 && (__IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_26_0) && (!TARGET_OS_VISION)) || \
     (TARGET_OS_TV     && __TVOS_26_0  && (__TV_OS_VERSION_MIN_REQUIRED     >= __TVOS_26_0))
 

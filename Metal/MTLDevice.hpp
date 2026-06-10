@@ -589,14 +589,47 @@ public:
 }
 
 #if defined(MTL_PRIVATE_IMPLEMENTATION)
+#if !defined(__OBJC__)
 extern "C" MTL::Device* MTLCreateSystemDefaultDevice();
 extern "C" NS::Array*   MTLCopyAllDevices();
 extern "C" NS::Array*   MTLCopyAllDevicesWithObserver(NS::Object**, MTL::DeviceNotificationHandlerBlock);
 extern "C" void         MTLRemoveDeviceObserver(const NS::Object*);
+#endif
 _MTL_PRIVATE_DEF_WEAK_CONST(MTL::DeviceNotificationName, DeviceWasAddedNotification);
 _MTL_PRIVATE_DEF_WEAK_CONST(MTL::DeviceNotificationName, DeviceRemovalRequestedNotification);
 _MTL_PRIVATE_DEF_WEAK_CONST(MTL::DeviceNotificationName, DeviceWasRemovedNotification);
 _MTL_PRIVATE_DEF_CONST(NS::ErrorUserInfoKey, CommandBufferEncoderInfoErrorKey);
+
+#if defined(__OBJC__)
+// In Obj-C++ mode, use dlsym to resolve Metal C functions since their
+// declarations from Metal.framework have incompatible Obj-C types.
+_NS_EXPORT MTL::Device* MTL::CreateSystemDefaultDevice()
+{
+    using PFN = MTL::Device* (*)();
+    static PFN pfn = reinterpret_cast<PFN>(dlsym(RTLD_DEFAULT, "MTLCreateSystemDefaultDevice"));
+    return pfn ? pfn() : nullptr;
+}
+
+_NS_EXPORT NS::Array* MTL::CopyAllDevices()
+{
+    using PFN = NS::Array* (*)();
+    static PFN pfn = reinterpret_cast<PFN>(dlsym(RTLD_DEFAULT, "MTLCopyAllDevices"));
+    return pfn ? pfn() : nullptr;
+}
+
+_NS_EXPORT NS::Array* MTL::CopyAllDevicesWithObserver(NS::Object** pOutObserver, MTL::DeviceNotificationHandlerBlock handler)
+{
+#if TARGET_OS_OSX
+    using PFN = NS::Array* (*)(NS::Object**, MTL::DeviceNotificationHandlerBlock);
+    static PFN pfn = reinterpret_cast<PFN>(dlsym(RTLD_DEFAULT, "MTLCopyAllDevicesWithObserver"));
+    return pfn ? pfn(pOutObserver, handler) : nullptr;
+#else
+    (void)pOutObserver;
+    (void)handler;
+    return nullptr;
+#endif // TARGET_OS_OSX
+}
+#else
 _NS_EXPORT MTL::Device* MTL::CreateSystemDefaultDevice()
 {
     return ::MTLCreateSystemDefaultDevice();
@@ -621,6 +654,7 @@ _NS_EXPORT NS::Array* MTL::CopyAllDevicesWithObserver(NS::Object** pOutObserver,
     return nullptr;
 #endif // TARGET_OS_OSX
 }
+#endif // __OBJC__
 
 _NS_EXPORT NS::Array* MTL::CopyAllDevicesWithObserver(NS::Object** pOutObserver, const MTL::DeviceNotificationHandlerFunction& handler)
 {
@@ -632,7 +666,13 @@ _NS_EXPORT void MTL::RemoveDeviceObserver(const NS::Object* pObserver)
 {
     (void)pObserver;
 #if TARGET_OS_OSX
+#if defined(__OBJC__)
+    using PFN = void (*)(const NS::Object*);
+    static PFN pfn = reinterpret_cast<PFN>(dlsym(RTLD_DEFAULT, "MTLRemoveDeviceObserver"));
+    if (pfn) pfn(pObserver);
+#else
     ::MTLRemoveDeviceObserver(pObserver);
+#endif
 #endif // TARGET_OS_OSX
 }
 
