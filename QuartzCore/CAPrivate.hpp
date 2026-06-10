@@ -141,8 +141,12 @@ namespace Private
             "setMaximumDrawableCount:");
         _CA_PRIVATE_DEF_SEL(setPixelFormat_,
             "setPixelFormat:");
+        _CA_PRIVATE_DEF_SEL(setWantsExtendedDynamicRangeContent_,
+            "setWantsExtendedDynamicRangeContent:");
         _CA_PRIVATE_DEF_SEL(texture,
             "texture");
+        _CA_PRIVATE_DEF_SEL(wantsExtendedDynamicRangeContent,
+            "wantsExtendedDynamicRangeContent");
     } // Class
 } // Private
 } // CA

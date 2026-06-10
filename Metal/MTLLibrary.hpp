@@ -71,6 +71,7 @@ _MTL_ENUM(NS::UInteger, LanguageVersion) {
     LanguageVersion3_1 = 196609,
     LanguageVersion3_2 = 196610,
     LanguageVersion4_0 = 262144,
+    LanguageVersion4_1 = 262145,
 };
 
 _MTL_ENUM(NS::Integer, LibraryType) {
@@ -97,6 +98,11 @@ _MTL_ENUM(NS::Integer, MathMode) {
 _MTL_ENUM(NS::Integer, MathFloatingPointFunctions) {
     MathFloatingPointFunctionsFast = 0,
     MathFloatingPointFunctionsPrecise = 1,
+};
+
+_MTL_ENUM(NS::Integer, FloatingPointConversionRoundingMode) {
+    FloatingPointConversionRoundingModeToNearestEven = 0,
+    FloatingPointConversionRoundingModeTowardZero = 1,
 };
 
 _MTL_ENUM(NS::UInteger, LibraryError) {
@@ -213,69 +219,73 @@ public:
 class CompileOptions : public NS::Copying<CompileOptions>
 {
 public:
-    static CompileOptions*     alloc();
+    static CompileOptions*              alloc();
 
-    bool                       allowReferencingUndefinedSymbols() const;
+    bool                                allowReferencingUndefinedSymbols() const;
 
-    CompileSymbolVisibility    compileSymbolVisibility() const;
+    CompileSymbolVisibility             compileSymbolVisibility() const;
 
-    bool                       enableLogging() const;
+    bool                                enableLogging() const;
 
-    bool                       fastMathEnabled() const;
+    bool                                fastMathEnabled() const;
 
-    CompileOptions*            init();
+    FloatingPointConversionRoundingMode floatingPointConversionRoundingMode() const;
 
-    NS::String*                installName() const;
+    CompileOptions*                     init();
 
-    LanguageVersion            languageVersion() const;
+    NS::String*                         installName() const;
 
-    NS::Array*                 libraries() const;
+    LanguageVersion                     languageVersion() const;
 
-    LibraryType                libraryType() const;
+    NS::Array*                          libraries() const;
 
-    MathFloatingPointFunctions mathFloatingPointFunctions() const;
+    LibraryType                         libraryType() const;
 
-    MathMode                   mathMode() const;
+    MathFloatingPointFunctions          mathFloatingPointFunctions() const;
 
-    NS::UInteger               maxTotalThreadsPerThreadgroup() const;
+    MathMode                            mathMode() const;
 
-    LibraryOptimizationLevel   optimizationLevel() const;
+    NS::UInteger                        maxTotalThreadsPerThreadgroup() const;
 
-    NS::Dictionary*            preprocessorMacros() const;
+    LibraryOptimizationLevel            optimizationLevel() const;
 
-    bool                       preserveInvariance() const;
+    NS::Dictionary*                     preprocessorMacros() const;
 
-    Size                       requiredThreadsPerThreadgroup() const;
+    bool                                preserveInvariance() const;
 
-    void                       setAllowReferencingUndefinedSymbols(bool allowReferencingUndefinedSymbols);
+    Size                                requiredThreadsPerThreadgroup() const;
 
-    void                       setCompileSymbolVisibility(MTL::CompileSymbolVisibility compileSymbolVisibility);
+    void                                setAllowReferencingUndefinedSymbols(bool allowReferencingUndefinedSymbols);
 
-    void                       setEnableLogging(bool enableLogging);
+    void                                setCompileSymbolVisibility(MTL::CompileSymbolVisibility compileSymbolVisibility);
 
-    void                       setFastMathEnabled(bool fastMathEnabled);
+    void                                setEnableLogging(bool enableLogging);
 
-    void                       setInstallName(const NS::String* installName);
+    void                                setFastMathEnabled(bool fastMathEnabled);
 
-    void                       setLanguageVersion(MTL::LanguageVersion languageVersion);
+    void                                setFloatingPointConversionRoundingMode(MTL::FloatingPointConversionRoundingMode floatingPointConversionRoundingMode);
 
-    void                       setLibraries(const NS::Array* libraries);
+    void                                setInstallName(const NS::String* installName);
 
-    void                       setLibraryType(MTL::LibraryType libraryType);
+    void                                setLanguageVersion(MTL::LanguageVersion languageVersion);
 
-    void                       setMathFloatingPointFunctions(MTL::MathFloatingPointFunctions mathFloatingPointFunctions);
+    void                                setLibraries(const NS::Array* libraries);
 
-    void                       setMathMode(MTL::MathMode mathMode);
+    void                                setLibraryType(MTL::LibraryType libraryType);
 
-    void                       setMaxTotalThreadsPerThreadgroup(NS::UInteger maxTotalThreadsPerThreadgroup);
+    void                                setMathFloatingPointFunctions(MTL::MathFloatingPointFunctions mathFloatingPointFunctions);
 
-    void                       setOptimizationLevel(MTL::LibraryOptimizationLevel optimizationLevel);
+    void                                setMathMode(MTL::MathMode mathMode);
 
-    void                       setPreprocessorMacros(const NS::Dictionary* preprocessorMacros);
+    void                                setMaxTotalThreadsPerThreadgroup(NS::UInteger maxTotalThreadsPerThreadgroup);
 
-    void                       setPreserveInvariance(bool preserveInvariance);
+    void                                setOptimizationLevel(MTL::LibraryOptimizationLevel optimizationLevel);
 
-    void                       setRequiredThreadsPerThreadgroup(MTL::Size requiredThreadsPerThreadgroup);
+    void                                setPreprocessorMacros(const NS::Dictionary* preprocessorMacros);
+
+    void                                setPreserveInvariance(bool preserveInvariance);
+
+    void                                setRequiredThreadsPerThreadgroup(MTL::Size requiredThreadsPerThreadgroup);
 };
 class FunctionReflection : public NS::Referencing<FunctionReflection>
 {
@@ -285,6 +295,8 @@ public:
     NS::Array*                 bindings() const;
 
     FunctionReflection*        init();
+
+    NS::String*                userAnnotation() const;
 };
 class Library : public NS::Referencing<Library>
 {
@@ -547,6 +559,11 @@ _MTL_INLINE bool MTL::CompileOptions::fastMathEnabled() const
     return Object::sendMessage<bool>(this, _MTL_PRIVATE_SEL(fastMathEnabled));
 }
 
+_MTL_INLINE MTL::FloatingPointConversionRoundingMode MTL::CompileOptions::floatingPointConversionRoundingMode() const
+{
+    return Object::sendMessage<MTL::FloatingPointConversionRoundingMode>(this, _MTL_PRIVATE_SEL(floatingPointConversionRoundingMode));
+}
+
 _MTL_INLINE MTL::CompileOptions* MTL::CompileOptions::init()
 {
     return NS::Object::init<MTL::CompileOptions>();
@@ -627,6 +644,11 @@ _MTL_INLINE void MTL::CompileOptions::setFastMathEnabled(bool fastMathEnabled)
     Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(setFastMathEnabled_), fastMathEnabled);
 }
 
+_MTL_INLINE void MTL::CompileOptions::setFloatingPointConversionRoundingMode(MTL::FloatingPointConversionRoundingMode floatingPointConversionRoundingMode)
+{
+    Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(setFloatingPointConversionRoundingMode_), floatingPointConversionRoundingMode);
+}
+
 _MTL_INLINE void MTL::CompileOptions::setInstallName(const NS::String* installName)
 {
     Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(setInstallName_), installName);
@@ -695,6 +717,11 @@ _MTL_INLINE NS::Array* MTL::FunctionReflection::bindings() const
 _MTL_INLINE MTL::FunctionReflection* MTL::FunctionReflection::init()
 {
     return NS::Object::init<MTL::FunctionReflection>();
+}
+
+_MTL_INLINE NS::String* MTL::FunctionReflection::userAnnotation() const
+{
+    return Object::sendMessage<NS::String*>(this, _MTL_PRIVATE_SEL(userAnnotation));
 }
 
 _MTL_INLINE MTL::Device* MTL::Library::device() const

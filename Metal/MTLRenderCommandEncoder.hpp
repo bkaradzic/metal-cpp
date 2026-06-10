@@ -353,8 +353,11 @@ public:
     void         useHeaps(const MTL::Heap* const heaps[], NS::UInteger count);
     void         useHeaps(const MTL::Heap* const heaps[], NS::UInteger count, MTL::RenderStages stages);
 
+    [[deprecated("please use useResource(const MTL::Resource*, MTL::ResourceUsage, MTL::RenderStages)")]]
     void         useResource(const MTL::Resource* resource, MTL::ResourceUsage usage);
     void         useResource(const MTL::Resource* resource, MTL::ResourceUsage usage, MTL::RenderStages stages);
+
+    [[deprecated("please use useResources(const MTL::Resource* const [], MTL::ResourceUsage, MTL::RenderStages)")]]
     void         useResources(const MTL::Resource* const resources[], NS::UInteger count, MTL::ResourceUsage usage);
     void         useResources(const MTL::Resource* const resources[], NS::UInteger count, MTL::ResourceUsage usage, MTL::RenderStages stages);
 

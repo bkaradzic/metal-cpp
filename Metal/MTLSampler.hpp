@@ -57,7 +57,7 @@ _MTL_ENUM(NS::UInteger, SamplerBorderColor) {
     SamplerBorderColorOpaqueWhite = 2,
 };
 
-_MTL_ENUM(NS::UInteger, SamplerReductionMode) {
+_MTL_ENUM(NS::Integer, SamplerReductionMode) {
     SamplerReductionModeWeightedAverage = 0,
     SamplerReductionModeMinimum = 1,
     SamplerReductionModeMaximum = 2,

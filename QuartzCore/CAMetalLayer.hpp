@@ -69,6 +69,9 @@ public:
     bool                     allowsNextDrawableTimeout() const;
     void                     setAllowsNextDrawableTimeout(bool allowsNextDrawableTimeout);
 
+    bool                     wantsExtendedDynamicRangeContent() const;
+    void                     setWantsExtendedDynamicRangeContent(bool wantsExtendedDynamicRangeContent);
+
     MTL::ResidencySet*       residencySet() const;
 };
 } // namespace CA
@@ -206,6 +209,21 @@ _CA_INLINE void CA::MetalLayer::setAllowsNextDrawableTimeout(bool allowsNextDraw
 {
     return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setAllowsNextDrawableTimeout_),
     allowsNextDrawableTimeout);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_CA_INLINE bool CA::MetalLayer::wantsExtendedDynamicRangeContent() const
+{
+    return Object::sendMessage<bool>(this, _CA_PRIVATE_SEL(wantsExtendedDynamicRangeContent));
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_CA_INLINE void CA::MetalLayer::setWantsExtendedDynamicRangeContent(bool wantsExtendedDynamicRangeContent)
+{
+    return Object::sendMessage<void>(this, _CA_PRIVATE_SEL(setWantsExtendedDynamicRangeContent_),
+        wantsExtendedDynamicRangeContent);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

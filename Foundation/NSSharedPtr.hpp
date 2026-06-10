@@ -308,3 +308,17 @@ _NS_INLINE bool operator!=(const NS::SharedPtr<_ClassLhs>& lhs, const NS::Shared
 {
     return lhs.get() != rhs.get();
 }
+
+namespace std
+{
+
+template <class T>
+struct hash<NS::SharedPtr<T>>
+{
+    size_t operator()(const NS::SharedPtr<T>& p) const
+    {
+        return std::hash<T*>{}(p.get());
+    }
+};
+
+} // namespace std

@@ -32,6 +32,7 @@ namespace MTL
 {
 class Buffer;
 class ComputePipelineState;
+class DepthStencilState;
 class RenderPipelineState;
 
 class IndirectRenderCommand : public NS::Referencing<IndirectRenderCommand>
@@ -65,7 +66,7 @@ public:
 
     void setFragmentBuffer(const MTL::Buffer* buffer, NS::UInteger offset, NS::UInteger index);
 
-    void setFrontFacingWinding(MTL::Winding frontFacingWindning);
+    void setFrontFacingWinding(MTL::Winding frontFacingWinding);
 
     void setMeshBuffer(const MTL::Buffer* buffer, NS::UInteger offset, NS::UInteger index);
 
@@ -176,9 +177,9 @@ _MTL_INLINE void MTL::IndirectRenderCommand::setFragmentBuffer(const MTL::Buffer
     Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(setFragmentBuffer_offset_atIndex_), buffer, offset, index);
 }
 
-_MTL_INLINE void MTL::IndirectRenderCommand::setFrontFacingWinding(MTL::Winding frontFacingWindning)
+_MTL_INLINE void MTL::IndirectRenderCommand::setFrontFacingWinding(MTL::Winding frontFacingWinding)
 {
-    Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(setFrontFacingWinding_), frontFacingWindning);
+    Object::sendMessage<void>(this, _MTL_PRIVATE_SEL(setFrontFacingWinding_), frontFacingWinding);
 }
 
 _MTL_INLINE void MTL::IndirectRenderCommand::setMeshBuffer(const MTL::Buffer* buffer, NS::UInteger offset, NS::UInteger index)

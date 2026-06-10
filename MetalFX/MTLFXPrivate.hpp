@@ -157,12 +157,20 @@ namespace MTLFX
                                     "aspectRatio" );
             _MTLFX_PRIVATE_DEF_SEL( colorProcessingMode,
                                     "colorProcessingMode" );
+            _MTLFX_PRIVATE_DEF_SEL( colorContentOffsetX,
+                                    "colorContentOffsetX" );
+            _MTLFX_PRIVATE_DEF_SEL( colorContentOffsetY,
+                                    "colorContentOffsetY" );
             _MTLFX_PRIVATE_DEF_SEL( colorTexture,
                                     "colorTexture" );
             _MTLFX_PRIVATE_DEF_SEL( colorTextureFormat,
                                     "colorTextureFormat" );
             _MTLFX_PRIVATE_DEF_SEL( colorTextureUsage,
                                     "colorTextureUsage" );
+            _MTLFX_PRIVATE_DEF_SEL( contentHeight,
+                                    "contentHeight" );
+            _MTLFX_PRIVATE_DEF_SEL( contentWidth,
+                                    "contentWidth" );
             _MTLFX_PRIVATE_DEF_SEL( deltaTime,
                                     "deltaTime" );
             _MTLFX_PRIVATE_DEF_SEL( denoiseStrengthMaskTexture,
@@ -173,6 +181,10 @@ namespace MTLFX
                                     "denoiseStrengthMaskTextureUsage" );
             _MTLFX_PRIVATE_DEF_SEL( depthTexture,
                                     "depthTexture" );
+            _MTLFX_PRIVATE_DEF_SEL( depthContentOffsetX,
+                                    "depthContentOffsetX" );
+            _MTLFX_PRIVATE_DEF_SEL( depthContentOffsetY,
+                                    "depthContentOffsetY" );
             _MTLFX_PRIVATE_DEF_SEL( depthTextureFormat,
                                     "depthTextureFormat" );
             _MTLFX_PRIVATE_DEF_SEL( depthTextureUsage,
@@ -183,6 +195,16 @@ namespace MTLFX
                                     "diffuseAlbedoTextureFormat" );
             _MTLFX_PRIVATE_DEF_SEL( diffuseAlbedoTextureUsage,
                                     "diffuseAlbedoTextureUsage" );
+            _MTLFX_PRIVATE_DEF_SEL( distortionHeight,
+                                    "distortionHeight" );
+            _MTLFX_PRIVATE_DEF_SEL( distortionOffsetX,
+                                    "distortionOffsetX" );
+            _MTLFX_PRIVATE_DEF_SEL( distortionOffsetY,
+                                    "distortionOffsetY" );
+            _MTLFX_PRIVATE_DEF_SEL( distortionTexture,
+                                    "distortionTexture" );
+            _MTLFX_PRIVATE_DEF_SEL( distortionWidth,
+                                    "distortionWidth" );
             _MTLFX_PRIVATE_DEF_SEL( encodeToCommandBuffer_,
                                     "encodeToCommandBuffer:" );
             _MTLFX_PRIVATE_DEF_SEL( exposureTexture,
@@ -213,8 +235,12 @@ namespace MTLFX
                                     "isDenoiseStrengthMaskTextureEnabled" );
             _MTLFX_PRIVATE_DEF_SEL( isDepthReversed,
                                     "isDepthReversed" );
+            _MTLFX_PRIVATE_DEF_SEL( isDistortionTextureEnabled,
+                                    "isDistortionTextureEnabled" );
             _MTLFX_PRIVATE_DEF_SEL( isInputContentPropertiesEnabled,
                                     "isInputContentPropertiesEnabled" );
+            _MTLFX_PRIVATE_DEF_SEL( isOutputResolutionMotionVectorsEnabled,
+                                    "isOutputResolutionMotionVectorsEnabled" );
             _MTLFX_PRIVATE_DEF_SEL( isTransparencyOverlayTextureEnabled,
                                     "isTransparencyOverlayTextureEnabled" );
             _MTLFX_PRIVATE_DEF_SEL( isReactiveMaskTextureEnabled,
@@ -235,6 +261,10 @@ namespace MTLFX
                                     "maskTextureUsage" );
             _MTLFX_PRIVATE_DEF_SEL( motionTexture,
                                     "motionTexture" );
+            _MTLFX_PRIVATE_DEF_SEL( motionContentOffsetX,
+                                    "motionContentOffsetX" );
+            _MTLFX_PRIVATE_DEF_SEL( motionContentOffsetY,
+                                    "motionContentOffsetY" );
             _MTLFX_PRIVATE_DEF_SEL( motionTextureFormat,
                                     "motionTextureFormat" );
             _MTLFX_PRIVATE_DEF_SEL( motionTextureUsage,
@@ -269,6 +299,10 @@ namespace MTLFX
                                     "normalTextureUsage" );
             _MTLFX_PRIVATE_DEF_SEL( outputHeight,
                                     "outputHeight" );
+            _MTLFX_PRIVATE_DEF_SEL( outputOffsetX,
+                                    "outputOffsetX" );
+            _MTLFX_PRIVATE_DEF_SEL( outputOffsetY,
+                                    "outputOffsetY" );
             _MTLFX_PRIVATE_DEF_SEL( outputTexture,
                                     "outputTexture" );
             _MTLFX_PRIVATE_DEF_SEL( outputTextureFormat,
@@ -291,6 +325,12 @@ namespace MTLFX
                                     "reactiveTextureUsage" );
             _MTLFX_PRIVATE_DEF_SEL( reactiveMaskTexture,
                                     "reactiveMaskTexture" );
+            _MTLFX_PRIVATE_DEF_SEL( reactiveMaskTextureUsage,
+                                    "reactiveMaskTextureUsage" );
+            _MTLFX_PRIVATE_DEF_SEL( reactiveMaskContentOffsetX,
+                                    "reactiveMaskContentOffsetX" );
+            _MTLFX_PRIVATE_DEF_SEL( reactiveMaskContentOffsetY,
+                                    "reactiveMaskContentOffsetY" );
             _MTLFX_PRIVATE_DEF_SEL( reset,
                                     "reset" );
             _MTLFX_PRIVATE_DEF_SEL( requiresSynchronousInitialization,
@@ -309,10 +349,18 @@ namespace MTLFX
                                     "setAutoExposureEnabled:" );
             _MTLFX_PRIVATE_DEF_SEL( setColorProcessingMode_,
                                     "setColorProcessingMode:" );
+            _MTLFX_PRIVATE_DEF_SEL( setColorContentOffsetX_,
+                                    "setColorContentOffsetX:" );
+            _MTLFX_PRIVATE_DEF_SEL( setColorContentOffsetY_,
+                                    "setColorContentOffsetY:" );
             _MTLFX_PRIVATE_DEF_SEL( setColorTexture_,
                                     "setColorTexture:" );
             _MTLFX_PRIVATE_DEF_SEL( setColorTextureFormat_,
                                     "setColorTextureFormat:" );
+            _MTLFX_PRIVATE_DEF_SEL( setContentHeight_,
+                                    "setContentHeight:" );
+            _MTLFX_PRIVATE_DEF_SEL( setContentWidth_,
+                                    "setContentWidth:" );
             _MTLFX_PRIVATE_DEF_SEL( setDeltaTime_,
                                     "setDeltaTime:" );
             _MTLFX_PRIVATE_DEF_SEL( setDenoiseStrengthMaskTexture_,
@@ -323,6 +371,10 @@ namespace MTLFX
                                     "setDenoiseStrengthMaskTextureFormat:" );
             _MTLFX_PRIVATE_DEF_SEL( setDepthInverted_,
                                     "setDepthInverted:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDepthContentOffsetX_,
+                                    "setDepthContentOffsetX:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDepthContentOffsetY_,
+                                    "setDepthContentOffsetY:" );
             _MTLFX_PRIVATE_DEF_SEL( setDepthReversed_,
                                     "setDepthReversed:" );
             _MTLFX_PRIVATE_DEF_SEL( setDepthTexture_,
@@ -333,6 +385,18 @@ namespace MTLFX
                                     "setDiffuseAlbedoTexture:" );
             _MTLFX_PRIVATE_DEF_SEL( setDiffuseAlbedoTextureFormat_,
                                     "setDiffuseAlbedoTextureFormat:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDistortionHeight_,
+                                    "setDistortionHeight:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDistortionOffsetX_,
+                                    "setDistortionOffsetX:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDistortionOffsetY_,
+                                    "setDistortionOffsetY:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDistortionTexture_,
+                                    "setDistortionTexture:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDistortionTextureEnabled_,
+                                    "setDistortionTextureEnabled:" );
+            _MTLFX_PRIVATE_DEF_SEL( setDistortionWidth_,
+                                    "setDistortionWidth:" );
             _MTLFX_PRIVATE_DEF_SEL( setExposureTexture_,
                                     "setExposureTexture:" );
             _MTLFX_PRIVATE_DEF_SEL( setFarPlane_,
@@ -371,6 +435,10 @@ namespace MTLFX
                                     "setMaskTextureFormat:" );
             _MTLFX_PRIVATE_DEF_SEL( setMotionTexture_,
                                     "setMotionTexture:" );
+            _MTLFX_PRIVATE_DEF_SEL( setMotionContentOffsetX_,
+                                    "setMotionContentOffsetX:" );
+            _MTLFX_PRIVATE_DEF_SEL( setMotionContentOffsetY_,
+                                    "setMotionContentOffsetY:" );
             _MTLFX_PRIVATE_DEF_SEL( setMotionTextureFormat_,
                                     "setMotionTextureFormat:" );
             _MTLFX_PRIVATE_DEF_SEL( setMotionVectorScaleX_,
@@ -383,6 +451,12 @@ namespace MTLFX
                                     "setNormalTextureFormat:" );
             _MTLFX_PRIVATE_DEF_SEL( setOutputHeight_,
                                     "setOutputHeight:" );
+            _MTLFX_PRIVATE_DEF_SEL( setOutputOffsetX_,
+                                    "setOutputOffsetX:" );
+            _MTLFX_PRIVATE_DEF_SEL( setOutputOffsetY_,
+                                    "setOutputOffsetY:" );
+            _MTLFX_PRIVATE_DEF_SEL( setOutputResolutionMotionVectorsEnabled_,
+                                    "setOutputResolutionMotionVectorsEnabled:" );
             _MTLFX_PRIVATE_DEF_SEL( setOutputTexture_,
                                     "setOutputTexture:" );
             _MTLFX_PRIVATE_DEF_SEL( setOutputTextureFormat_,
@@ -403,6 +477,10 @@ namespace MTLFX
                                     "setPrevColorTexture:" );
             _MTLFX_PRIVATE_DEF_SEL( setReactiveMaskTexture_,
                                     "setReactiveMaskTexture:" );
+            _MTLFX_PRIVATE_DEF_SEL( setReactiveMaskContentOffsetX_,
+                                    "setReactiveMaskContentOffsetX:" );
+            _MTLFX_PRIVATE_DEF_SEL( setReactiveMaskContentOffsetY_,
+                                    "setReactiveMaskContentOffsetY:" );
             _MTLFX_PRIVATE_DEF_SEL( setReactiveMaskTextureEnabled_,
                                     "setReactiveMaskTextureEnabled:" );
             _MTLFX_PRIVATE_DEF_SEL( setReactiveMaskTextureFormat_,

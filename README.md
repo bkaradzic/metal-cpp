@@ -2,6 +2,7 @@
 
 **metal-cpp** is a low overhead and header only C++ interface for Metal that helps developers add Metal functionality to graphics applications that are written in C++ (such as game engines). **metal-cpp** removes the need to create a shim and allows developers to call Metal functions directly from anywhere in their existing C++ code.
 
+For more information see also: https://developer.apple.com/metal/cpp
 
 ## Highlights
 
@@ -18,9 +19,12 @@
 
 | Version | Changes |
 |-|-|
-| macOS 26.4, iOS 26.4 | Add all the Metal APIs in macOS 26.4, iOS 26.4. Bugfixing and other improvements. |
+| macOS 27, iOS 27 | Add all the new Metal APIs in macOS 27 and iOS 27 |
+| macOS 26.4, iOS 26.4 | Add all the Metal APIs in macOS 26.4, iOS 26.4. Improvements and fixes. |
 | macOS 26, iOS 26 | Add all the Metal APIs in macOS 26, iOS 26, including support for the **Apple10** GPU family. <br/>Add support for Metal 4 and new denoiser and temporal scalers in MetalFX.|
+| macOS 15.2, iOS 18.2 | Improvements and fixes. |
 | macOS 15, iOS 18 | Add all the Metal APIs in macOS 15 and iOS 18. |
+| macOS 14.2, iOS 17.2 | Improvements and fixes. |
 | macOS 14, iOS 17 | Add support for the **MetalFX** framework. <br/>Add all the APIs in macOS 14 and iOS 17. |
 | macOS 13.3, iOS 16.4 | Add all the APIs in macOS 13.3 and iOS 16.4. |
 | macOS 13, iOS 16| Add all the APIs in macOS 13 and iOS 16.<br />New optional `NS::SharedPtr<T>` type to assist with memory management.<br/>New convenience function to create a `CA::MetalLayer`.<br/>New `MTLSTR(str)` macro allows faster string creation from literals.<br/>Fix a problem with the signature of functions that take an array of pointers as input.<br/>Fix a problem with the signature of the `setGroups()` function in `MTL::LinkedFunctions`.|

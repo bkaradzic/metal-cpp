@@ -136,6 +136,8 @@ namespace MTLFX
         MTL::TextureUsage                                       colorTextureUsage() const;
         MTL::TextureUsage                                       depthTextureUsage() const;
         MTL::TextureUsage                                       motionTextureUsage() const;
+        MTL::TextureUsage                                       reactiveMaskTextureUsage() const;
+        [[deprecated("use reactiveMaskTextureUsage")]]
         MTL::TextureUsage                                       reactiveTextureUsage() const;
         MTL::TextureUsage                                       diffuseAlbedoTextureUsage() const;
         MTL::TextureUsage                                       specularAlbedoTextureUsage() const;
@@ -694,6 +696,13 @@ _MTLFX_INLINE MTL::TextureUsage MTLFX::TemporalDenoisedScalerBase::motionTexture
 _MTLFX_INLINE MTL::TextureUsage MTLFX::TemporalDenoisedScalerBase::reactiveTextureUsage() const
 {
     return NS::Object::sendMessage< MTL::TextureUsage >( this, _MTLFX_PRIVATE_SEL( reactiveTextureUsage ) );
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+_MTLFX_INLINE MTL::TextureUsage MTLFX::TemporalDenoisedScalerBase::reactiveMaskTextureUsage() const
+{
+    return NS::Object::sendMessage< MTL::TextureUsage >( this, _MTLFX_PRIVATE_SEL( reactiveMaskTextureUsage ) );
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

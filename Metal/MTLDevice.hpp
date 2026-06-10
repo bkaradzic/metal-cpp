@@ -95,6 +95,7 @@ class SharedEventHandle;
 class SharedTextureHandle;
 class StitchedLibraryDescriptor;
 class Tensor;
+class TensorBufferAttachments;
 class TensorDescriptor;
 class Texture;
 class TextureDescriptor;
@@ -503,6 +504,7 @@ public:
     Texture*                         newSharedTexture(const MTL::SharedTextureHandle* sharedHandle);
 
     Tensor*                          newTensor(const MTL::TensorDescriptor* descriptor, NS::Error** error);
+    Tensor*                          newTensor(const MTL::TensorDescriptor* descriptor, const MTL::TensorBufferAttachments* attachments, NS::Error** error);
 
     Texture*                         newTexture(const MTL::TextureDescriptor* descriptor);
     Texture*                         newTexture(const MTL::TextureDescriptor* descriptor, const IOSurfaceRef iosurface, NS::UInteger plane);
@@ -1292,6 +1294,11 @@ _MTL_INLINE MTL::Texture* MTL::Device::newSharedTexture(const MTL::SharedTexture
 _MTL_INLINE MTL::Tensor* MTL::Device::newTensor(const MTL::TensorDescriptor* descriptor, NS::Error** error)
 {
     return Object::sendMessage<MTL::Tensor*>(this, _MTL_PRIVATE_SEL(newTensorWithDescriptor_error_), descriptor, error);
+}
+
+_MTL_INLINE MTL::Tensor* MTL::Device::newTensor(const MTL::TensorDescriptor* descriptor, const MTL::TensorBufferAttachments* attachments, NS::Error** error)
+{
+    return Object::sendMessage<MTL::Tensor*>(this, _MTL_PRIVATE_SEL(newTensorWithDescriptor_attachments_error_), descriptor, attachments, error);
 }
 
 _MTL_INLINE MTL::Texture* MTL::Device::newTexture(const MTL::TextureDescriptor* descriptor)

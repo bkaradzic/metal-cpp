@@ -156,6 +156,10 @@ _MTL_PRIVATE_DEF_CLS(MTLStencilDescriptor);
 _MTL_PRIVATE_DEF_CLS(MTLStitchedLibraryDescriptor);
 _MTL_PRIVATE_DEF_CLS(MTLStructMember);
 _MTL_PRIVATE_DEF_CLS(MTLStructType);
+_MTL_PRIVATE_DEF_CLS(MTLTensorAuxiliaryPlaneDescriptor);
+_MTL_PRIVATE_DEF_CLS(MTLTensorAuxiliaryPlaneDescriptorMap);
+_MTL_PRIVATE_DEF_CLS(MTLTensorAuxiliaryPlaneType);
+_MTL_PRIVATE_DEF_CLS(MTLTensorBufferAttachments);
 _MTL_PRIVATE_DEF_CLS(MTLTensorDescriptor);
 _MTL_PRIVATE_DEF_CLS(MTLTensorExtents);
 _MTL_PRIVATE_DEF_CLS(MTLTensorReferenceType);
@@ -250,6 +254,7 @@ _MTL_PRIVATE_DEF_PRO(MTLResourceViewPool);
 _MTL_PRIVATE_DEF_PRO(MTLSamplerState);
 _MTL_PRIVATE_DEF_PRO(MTLSharedEvent);
 _MTL_PRIVATE_DEF_PRO(MTLTensor);
+_MTL_PRIVATE_DEF_PRO(MTLTensorAuxiliaryPlane);
 _MTL_PRIVATE_DEF_PRO(MTLTensorBinding);
 _MTL_PRIVATE_DEF_PRO(MTLTexture);
 _MTL_PRIVATE_DEF_PRO(MTLTextureBinding);
@@ -360,6 +365,8 @@ _MTL_PRIVATE_DEF_SEL(attributeType,
     "attributeType");
 _MTL_PRIVATE_DEF_SEL(attributes,
     "attributes");
+_MTL_PRIVATE_DEF_SEL(auxiliaryPlanes,
+    "auxiliaryPlanes");
 _MTL_PRIVATE_DEF_SEL(backFaceStencil,
     "backFaceStencil");
 _MTL_PRIVATE_DEF_SEL(barrierAfterEncoderStages_beforeEncoderStages_visibilityOptions_,
@@ -392,6 +399,8 @@ _MTL_PRIVATE_DEF_SEL(blitCommandEncoderWithDescriptor_,
     "blitCommandEncoderWithDescriptor:");
 _MTL_PRIVATE_DEF_SEL(blitPassDescriptor,
     "blitPassDescriptor");
+_MTL_PRIVATE_DEF_SEL(blockFactors,
+    "blockFactors");
 _MTL_PRIVATE_DEF_SEL(borderColor,
     "borderColor");
 _MTL_PRIVATE_DEF_SEL(boundingBoxBuffer,
@@ -414,6 +423,8 @@ _MTL_PRIVATE_DEF_SEL(bufferDataSize,
     "bufferDataSize");
 _MTL_PRIVATE_DEF_SEL(bufferDataType,
     "bufferDataType");
+_MTL_PRIVATE_DEF_SEL(bufferForPlane_,
+    "bufferForPlane:");
 _MTL_PRIVATE_DEF_SEL(bufferIndex,
     "bufferIndex");
 _MTL_PRIVATE_DEF_SEL(bufferOffset,
@@ -528,6 +539,8 @@ _MTL_PRIVATE_DEF_SEL(copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPe
     "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:");
 _MTL_PRIVATE_DEF_SEL(copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_,
     "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:");
+_MTL_PRIVATE_DEF_SEL(copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane_,
+    "copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:");
 _MTL_PRIVATE_DEF_SEL(copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions_,
     "copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:");
 _MTL_PRIVATE_DEF_SEL(copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_,
@@ -602,6 +615,8 @@ _MTL_PRIVATE_DEF_SEL(depthStencilPassOperation,
     "depthStencilPassOperation");
 _MTL_PRIVATE_DEF_SEL(descriptor,
     "descriptor");
+_MTL_PRIVATE_DEF_SEL(descriptorForPlane_,
+    "descriptorForPlane:");
 _MTL_PRIVATE_DEF_SEL(destination,
     "destination");
 _MTL_PRIVATE_DEF_SEL(destinationAlphaBlendFactor,
@@ -742,6 +757,8 @@ _MTL_PRIVATE_DEF_SEL(fillBuffer_range_value_,
     "fillBuffer:range:value:");
 _MTL_PRIVATE_DEF_SEL(firstMipmapInTail,
     "firstMipmapInTail");
+_MTL_PRIVATE_DEF_SEL(floatingPointConversionRoundingMode,
+    "floatingPointConversionRoundingMode");
 _MTL_PRIVATE_DEF_SEL(format,
     "format");
 _MTL_PRIVATE_DEF_SEL(fragmentAdditionalBinaryFunctions,
@@ -810,6 +827,8 @@ _MTL_PRIVATE_DEF_SEL(getBytes_bytesPerRow_fromRegion_mipmapLevel_,
     "getBytes:bytesPerRow:fromRegion:mipmapLevel:");
 _MTL_PRIVATE_DEF_SEL(getBytes_strides_fromSliceOrigin_sliceDimensions_,
     "getBytes:strides:fromSliceOrigin:sliceDimensions:");
+_MTL_PRIVATE_DEF_SEL(getBytes_strides_fromSliceOrigin_sliceDimensions_plane_,
+    "getBytes:strides:fromSliceOrigin:sliceDimensions:plane:");
 _MTL_PRIVATE_DEF_SEL(getDefaultSamplePositions_count_,
     "getDefaultSamplePositions:count:");
 _MTL_PRIVATE_DEF_SEL(getPhysicalIndexForLogicalIndex_,
@@ -1428,6 +1447,8 @@ _MTL_PRIVATE_DEF_SEL(newSharedTextureWithDescriptor_,
     "newSharedTextureWithDescriptor:");
 _MTL_PRIVATE_DEF_SEL(newSharedTextureWithHandle_,
     "newSharedTextureWithHandle:");
+_MTL_PRIVATE_DEF_SEL(newTensorWithDescriptor_attachments_error_,
+    "newTensorWithDescriptor:attachments:error:");
 _MTL_PRIVATE_DEF_SEL(newTensorWithDescriptor_error_,
     "newTensorWithDescriptor:error:");
 _MTL_PRIVATE_DEF_SEL(newTensorWithDescriptor_offset_error_,
@@ -1488,6 +1509,8 @@ _MTL_PRIVATE_DEF_SEL(objectThreadgroupSizeIsMultipleOfThreadExecutionWidth,
     "objectThreadgroupSizeIsMultipleOfThreadExecutionWidth");
 _MTL_PRIVATE_DEF_SEL(offset,
     "offset");
+_MTL_PRIVATE_DEF_SEL(offsetForPlane_,
+    "offsetForPlane:");
 _MTL_PRIVATE_DEF_SEL(opaque,
     "opaque");
 _MTL_PRIVATE_DEF_SEL(optimizationLevel,
@@ -1540,6 +1563,8 @@ _MTL_PRIVATE_DEF_SEL(pixelFormat,
     "pixelFormat");
 _MTL_PRIVATE_DEF_SEL(placementSparsePageSize,
     "placementSparsePageSize");
+_MTL_PRIVATE_DEF_SEL(planeType,
+    "planeType");
 _MTL_PRIVATE_DEF_SEL(pointerType,
     "pointerType");
 _MTL_PRIVATE_DEF_SEL(popDebugGroup,
@@ -1662,6 +1687,8 @@ _MTL_PRIVATE_DEF_SEL(replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytes
     "replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:");
 _MTL_PRIVATE_DEF_SEL(replaceRegion_mipmapLevel_withBytes_bytesPerRow_,
     "replaceRegion:mipmapLevel:withBytes:bytesPerRow:");
+_MTL_PRIVATE_DEF_SEL(replaceSliceOrigin_sliceDimensions_plane_withBytes_strides_,
+    "replaceSliceOrigin:sliceDimensions:plane:withBytes:strides:");
 _MTL_PRIVATE_DEF_SEL(replaceSliceOrigin_sliceDimensions_withBytes_strides_,
     "replaceSliceOrigin:sliceDimensions:withBytes:strides:");
 _MTL_PRIVATE_DEF_SEL(requestResidency,
@@ -1782,6 +1809,8 @@ _MTL_PRIVATE_DEF_SEL(setArrayLength_,
     "setArrayLength:");
 _MTL_PRIVATE_DEF_SEL(setAttributes_,
     "setAttributes:");
+_MTL_PRIVATE_DEF_SEL(setAuxiliaryPlanes_,
+    "setAuxiliaryPlanes:");
 _MTL_PRIVATE_DEF_SEL(setBackFaceStencil_,
     "setBackFaceStencil:");
 _MTL_PRIVATE_DEF_SEL(setBarrier,
@@ -1798,6 +1827,8 @@ _MTL_PRIVATE_DEF_SEL(setBlendingEnabled_,
     "setBlendingEnabled:");
 _MTL_PRIVATE_DEF_SEL(setBlendingState_,
     "setBlendingState:");
+_MTL_PRIVATE_DEF_SEL(setBlockFactors_,
+    "setBlockFactors:");
 _MTL_PRIVATE_DEF_SEL(setBorderColor_,
     "setBorderColor:");
 _MTL_PRIVATE_DEF_SEL(setBoundingBoxBuffer_,
@@ -1816,6 +1847,8 @@ _MTL_PRIVATE_DEF_SEL(setBuffer_offset_atIndex_,
     "setBuffer:offset:atIndex:");
 _MTL_PRIVATE_DEF_SEL(setBuffer_offset_attributeStride_atIndex_,
     "setBuffer:offset:attributeStride:atIndex:");
+_MTL_PRIVATE_DEF_SEL(setBuffer_offset_forPlane_,
+    "setBuffer:offset:forPlane:");
 _MTL_PRIVATE_DEF_SEL(setBufferIndex_,
     "setBufferIndex:");
 _MTL_PRIVATE_DEF_SEL(setBufferOffset_atIndex_,
@@ -1946,6 +1979,8 @@ _MTL_PRIVATE_DEF_SEL(setDepthTestMinBound_maxBound_,
     "setDepthTestMinBound:maxBound:");
 _MTL_PRIVATE_DEF_SEL(setDepthWriteEnabled_,
     "setDepthWriteEnabled:");
+_MTL_PRIVATE_DEF_SEL(setDescriptor_forPlane_,
+    "setDescriptor:forPlane:");
 _MTL_PRIVATE_DEF_SEL(setDestination_,
     "setDestination:");
 _MTL_PRIVATE_DEF_SEL(setDestinationAlphaBlendFactor_,
@@ -1970,6 +2005,8 @@ _MTL_PRIVATE_DEF_SEL(setFastMathEnabled_,
     "setFastMathEnabled:");
 _MTL_PRIVATE_DEF_SEL(setFeedbackQueue_,
     "setFeedbackQueue:");
+_MTL_PRIVATE_DEF_SEL(setFloatingPointConversionRoundingMode_,
+    "setFloatingPointConversionRoundingMode:");
 _MTL_PRIVATE_DEF_SEL(setFormat_,
     "setFormat:");
 _MTL_PRIVATE_DEF_SEL(setFragmentAccelerationStructure_atBufferIndex_,
@@ -3044,6 +3081,8 @@ _MTL_PRIVATE_DEF_SEL(useResources_count_usage_stages_,
     "useResources:count:usage:stages:");
 _MTL_PRIVATE_DEF_SEL(usedSize,
     "usedSize");
+_MTL_PRIVATE_DEF_SEL(userAnnotation,
+    "userAnnotation");
 _MTL_PRIVATE_DEF_SEL(vertexAdditionalBinaryFunctions,
     "vertexAdditionalBinaryFunctions");
 _MTL_PRIVATE_DEF_SEL(vertexArguments,
